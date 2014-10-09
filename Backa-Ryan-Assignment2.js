@@ -13,7 +13,8 @@ var CondiArray = new Array(),
     isItALetter = true,
     totalEntries = 0,
     customerName ="",
-    preparer ="";
+    preparer ="",
+    printToCustomer="";
 
 
 //Functions
@@ -22,21 +23,21 @@ var getCondiNum = function (enterCondi, wellOpen, CondiNumArray, entries) {
     var counter = 0,
         counter2 = 0;
     entries--;
-   //boolean condition with logical operator
-    if ((enterCondi === true && wellOpen === true)||(enterCondi!== false)) {
+ 
 
         //nested while loop collecting condensate per hour in array
-        while (counter <= entries) {
+        while (enterCondi === true && wellOpen === true) {
             counter2++;
             CondiNumArray[counter] = prompt("How many total barrels of condensate were in hour " + (counter2) + "?");
             CondiNumArray[counter] = parseFloat(CondiNumArray[counter]);
             console.log("You have " + CondiNumArray[counter] + " total barrels of condensate.");
             counter++;
-        }
-        console.log("You have entered " + counter + " numbers.");
-    } else {
-        console.log("You have no new numbers to enter.");
-    }
+			if (counter <= entries){
+				enterCondi = true;
+			}else{
+				enterCondi = false;
+			}   
+		}
     return CondiNumArray;
 };//collecting condensate entries
 
@@ -61,14 +62,8 @@ var CalcCondiBbls = function (entries, CondiNumArray, calcArray) {
     return calcArray;
 };//calculating how many bbls of condensate per hour
 
-var logBbls = function (customer, signed, entries, totalCondi) {
-	//local variables
-	var avgBbls=0;
-	var division=totalCondi.length;
-	//main code concatenating strings 
-	avgBbls=totalCondi[entries]/division;
-	entries--;
-	console.log("Dear " + customer +", we have made "+avgBbls+" per hour on your land resulting in "+totalCondi[entries]+" barrels of condensate. Thank you," + signed+".");
+var logBbls = function (customer, signed, entries, totalCondi,concatStrng) {
+	concatStrng = "Dear " + customer +", we have made "+totalCondi[entries]+" barrels of condensate on your property. Thank you, " + signed+".";
 	
 	}
 
@@ -90,7 +85,7 @@ while (isItALetter === true) {
 getCondiNum(condi, wellOpen, CondiArray, totalEntries);
 
 CalcCondiBbls(totalEntries, CondiArray, calculatedArray);
-
+totalEntries=
 customerName=prompt("What is the customers name?");
 preparer=prompt("Who prepared this report?");
 
