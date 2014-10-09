@@ -70,10 +70,8 @@ var concatCustomerPreparer = function (customer, signed, entries, totalCondiArra
 	totalBblsCondi = totalCondiArray[entries];
 	concatStrng ="Thank You, " +customer+ " Sincerely " +signed+".";
 	console.log(concatStrng);
-	
 	return concatStrng;
-	
-	}
+}
 
 //process to finish app or loop back through
 var finishedProcess = function() {
