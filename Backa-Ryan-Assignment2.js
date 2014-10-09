@@ -115,9 +115,10 @@ var runMainCode = function(numOfEntries){
 	preparer=prompt("Who prepared this report?");
 	toCustomer=concatCustomerPreparer(customerName, preparer, numOfEntries, CondiArray, toCustomer);
 	numOfEntries--;
+	console.log("Dear "+customerName+",");
 	for(loopCounter=0; loopCounter<=numOfEntries; loopCounter++) {
-		console.log("You made "+calculatedArray[loopCounter]+" of condensate in hour "+hourCounter+".");
-		console.log("Making your total barrels equal"+condiArray[loopCounter]+".");
+		console.log("You made "+calculatedArray[loopCounter]+" barrels of condensate in hour "+hourCounter+".");
+		console.log("Making your total barrels equal "+condiArray[loopCounter]+".");
 		hourCounter++;
 	}
 	console.log(toCustomer);
