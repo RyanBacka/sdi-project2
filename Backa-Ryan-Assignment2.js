@@ -18,6 +18,7 @@ var CondiArray = new Array(),
 
 
 //Functions
+//collecting condensate numbers
 var getCondiNum = function (enterCondi, wellOpen, CondiNumArray, entries) {
     //local variables
     var counter = 0,
@@ -40,6 +41,7 @@ var getCondiNum = function (enterCondi, wellOpen, CondiNumArray, entries) {
     return CondiNumArray;
 };//collecting condensate entries
 
+//calculating how many bbls of condensate per hour
 var CalcCondiBbls = function (entries, CondiNumArray, calcArray) {
 	//local variables
     var loopCounter;
@@ -59,19 +61,19 @@ var CalcCondiBbls = function (entries, CondiNumArray, calcArray) {
         }
     }
     return calcArray;
-};//calculating how many bbls of condensate per hour
+};
 
-var logBbls = function (customer, signed, entries, totalCondi, concatStrng) {
-	var customer,
-		signed,
-		entries,
-		totalCondi,
-		concatStrng;
-		
-	concatStrng = ("Dear " + customer +", we have made "+totalCondi[entries]+" barrels of condensate on your property. Thank you, " + signed+".");
+//concatinate the strings entered in runMainCode
+var logBbls = function (customer, signed, entries, totalCondiArray, concatStrng) {
+	entries--;	
+	concatStrng = ("Dear " + customer +", we have made "+totalCondiArray[entries]+" barrels of condensate on your property. Thank you, " + signed+".");
+	console.log(concatStrng);
+	
 	return concatStrng;
+	
 	}
 
+//process to finish app or loop back through
 var finishedProcess = function() {
 	var strng="";
 	while (strng != "yes" || strng != "no" || strng != "Yes" || strng != "No"){
@@ -80,7 +82,10 @@ var finishedProcess = function() {
 			if (strng =="yes" || strng == "Yes"){
 				console.log("Thank you. Have a good day!");
 				break;
-			}else{ runFunction;}
+			}else{ 
+			console.log("Let's try this again.");
+			runMainCode();
+			}
 		}else{
 			console.log("Please enter yes or no");//check to make sure they entered yes or no. 
 		}
@@ -88,26 +93,33 @@ var finishedProcess = function() {
 }
 
 
-//Main Code
-wellOpen = confirm("Is the well open? click \"OK\" for yes");
-condi = confirm("Do you have condensate numbers to enter? click \"OK\" for yes");
-while (isItALetter === true) {
-    totalEntries = prompt("How many entries do you have?");
-    isItALetter = isNaN(totalEntries);//making sure the entry is a number
-    if (isItALetter === false) {
-        totalEntries=parseInt(totalEntries);
-        console.log("You said " + totalEntries + " total entries.");
-    }else{
-	    console.log("Please enter a number");
-    }
+//Main Code function
+var runMainCode = function(){
+	wellOpen = confirm("Is the well open? click \"OK\" for yes");
+	condi = confirm("Do you have condensate numbers to enter? click \"OK\" for yes");
+	while (isItALetter === true) {
+    	totalEntries = prompt("How many entries do you have?");
+		isItALetter = isNaN(totalEntries);//making sure the entry is a number
+		if (isItALetter === false) {
+        	totalEntries=parseInt(totalEntries);
+			console.log("You said " + totalEntries + " total entries.");
+		}else{
+	    	console.log("Please enter a number");
+		}
+	}
+	getCondiNum(condi, wellOpen, CondiArray, totalEntries);
+
+	CalcCondiBbls(totalEntries, CondiArray, calculatedArray);
+
+	customerName=prompt("What is the customers name?");
+	preparer=prompt("Who prepared this report?");
+
+	logBbls(customerName,preparer,totalEntries,CondiArray, printToCustomer);
+
+	console.log(printToCustomer);
+
+	finishedProcess();
 }
-getCondiNum(condi, wellOpen, CondiArray, totalEntries);
 
-CalcCondiBbls(totalEntries, CondiArray, calculatedArray);
-
-customerName=prompt("What is the customers name?");
-preparer=prompt("Who prepared this report?");
-
-logBbls(customerName,preparer,totalEntries,CondiArray, printToCustomer);
-
-console.log(printToCustomer);
+//Main Code
+runMainCode();
