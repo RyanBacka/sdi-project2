@@ -94,27 +94,27 @@ var finishedProcess = function() {
 
 
 //Main Code function
-var runMainCode = function(){
+var runMainCode = function(numOfEntries){
 	wellOpen = confirm("Is the well open? click \"OK\" for yes");
 	condi = confirm("Do you have condensate numbers to enter? click \"OK\" for yes");
 	while (isItALetter === true) {
-    	totalEntries = prompt("How many entries do you have?");
-		isItALetter = isNaN(totalEntries);//making sure the entry is a number
+    	numOfEntries = prompt("How many entries do you have?");
+		isItALetter = isNaN(numOfEntries);//making sure the entry is a number
 		if (isItALetter === false) {
-        	totalEntries=parseInt(totalEntries);
-			console.log("You said " + totalEntries + " total entries.");
+        	numOfEntries=parseInt(numOfEntries);
+			console.log("You said " + numOfEntries + " total entries.");
 		}else{
 	    	console.log("Please enter a number");
 		}
 	}
-	getCondiNum(condi, wellOpen, CondiArray, totalEntries);
+	getCondiNum(condi, wellOpen, CondiArray, numOfEntries);
 
-	CalcCondiBbls(totalEntries, CondiArray, calculatedArray);
+	CalcCondiBbls(numOfEntries, CondiArray, calculatedArray);
 
 	customerName=prompt("What is the customers name?");
 	preparer=prompt("Who prepared this report?");
 
-	logBbls(customerName,preparer,totalEntries,CondiArray, printToCustomer);
+	logBbls(customerName,preparer,numOfEntries,CondiArray, printToCustomer);
 
 	console.log(printToCustomer);
 
@@ -122,4 +122,4 @@ var runMainCode = function(){
 }
 
 //Main Code
-runMainCode();
+runMainCode(totalEntries);
