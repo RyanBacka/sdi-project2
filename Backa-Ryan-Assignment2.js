@@ -13,8 +13,8 @@ var CondiArray = new Array(),
     isItALetter = true,
     totalEntries = 0,
     customerName ="",
-    preparer ="",
-    printToCustomer="";
+    preparer ="";
+    
 
 
 //Functions
@@ -64,9 +64,11 @@ var CalcCondiBbls = function (entries, CondiNumArray, calcArray) {
 };
 
 //concatinate the strings entered in runMainCode
-var logBbls = function (customer, signed, entries, totalCondiArray, concatStrng) {
+var concatCustomerPreparer = function (customer, signed, entries, totalCondiArray, concatStrng) {
+	var totalBblsCondi="";
 	entries--;	
-	concatStrng = ("Dear " + customer +", we have made "+totalCondiArray[entries]+" barrels of condensate on your property. Thank you, " + signed+".");
+	totalBblsCondi = totalCondiArray[entries];
+	concatStrng ="Thank You, " +customer+ " Sincerely " +signed+".";
 	console.log(concatStrng);
 	
 	return concatStrng;
@@ -95,6 +97,7 @@ var finishedProcess = function() {
 
 //Main Code function
 var runMainCode = function(numOfEntries){
+	var toCustomer="";
 	wellOpen = confirm("Is the well open? click \"OK\" for yes");
 	condi = confirm("Do you have condensate numbers to enter? click \"OK\" for yes");
 	while (isItALetter === true) {
@@ -114,9 +117,9 @@ var runMainCode = function(numOfEntries){
 	customerName=prompt("What is the customers name?");
 	preparer=prompt("Who prepared this report?");
 
-	logBbls(customerName,preparer,numOfEntries,CondiArray, printToCustomer);
+	concatCustomerPreparer(customerName, preparer, numOfEntries, CondiArray, toCustomer);
 
-	console.log(printToCustomer);
+	console.log(toCustomer);
 
 	finishedProcess();
 }
