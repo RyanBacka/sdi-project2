@@ -69,7 +69,7 @@ var concatCustomerPreparer = function (customer, signed, entries, totalCondiArra
 	var totalBblsCondi="";
 	entries--;	
 	totalBblsCondi = totalCondiArray[entries];
-	concatStrng ="Thank You, " +customer+ " Sincerely " +signed+".";
+	concatStrng ="Thank You, " +customer+ ". Sincerely " +signed+".";
 	return concatStrng;
 }
 
