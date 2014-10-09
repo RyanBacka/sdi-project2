@@ -118,7 +118,6 @@ var runMainCode = function(numOfEntries){
 	for(loopCounter=0; loopCounter<=numOfEntries; loopCounter++) {
 		console.log("You made "+calculatedArray[loopCounter]+" of condensate in hour "+hourCounter+".");
 		console.log("Making your total barrels equal"+condiArray[loopCounter]+".");
-		
 		hourCounter++;
 	}
 	console.log(toCustomer);
