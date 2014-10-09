@@ -62,9 +62,9 @@ var CalcCondiBbls = function (entries, CondiNumArray, calcArray) {
     return calcArray;
 };//calculating how many bbls of condensate per hour
 
-var logBbls = function (customer, signed, entries, totalCondi,concatStrng) {
-	concatStrng = "Dear " + customer +", we have made "+totalCondi[entries]+" barrels of condensate on your property. Thank you, " + signed+".";
-	
+var logBbls = function (customer, signed, entries, totalCondi, concatStrng) {
+	concatStrng = ("Dear " + customer +", we have made "+totalCondi[entries]+" barrels of condensate on your property. Thank you, " + signed+".");
+	return concatStrng;
 	}
 
 
@@ -89,4 +89,6 @@ totalEntries=
 customerName=prompt("What is the customers name?");
 preparer=prompt("Who prepared this report?");
 
-logBbls(customerName,preparer,totalEntries,CondiArray);
+logBbls(customerName,preparer,totalEntries,CondiArray, printToCustomer);
+
+console.log(printToCustomer);
