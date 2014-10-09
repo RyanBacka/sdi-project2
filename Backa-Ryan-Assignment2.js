@@ -2,7 +2,7 @@
 //alert("JavaScript works!");
 //Ryan Backa
 //10/8/2014
-//SDI 14/10
+//SDI 10/14
 //Project 2
 
 //Global Varriables
