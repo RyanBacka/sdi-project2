@@ -13,8 +13,9 @@ var CondiArray = new Array(),
     isItALetter = true,
     totalEntries = 0,
     customerName ="",
-    preparer ="";
-    
+    preparer ="",
+    loopCounter=0
+    toCustomer="";
 
 
 //Functions
@@ -23,7 +24,7 @@ var getCondiNum = function (enterCondi, wellOpen, CondiNumArray, entries) {
     //local variables
     var counter = 0,
         counter2 = 0;
-    entries--;
+		entries--;
     
     //nested while loop collecting condensate per hour in array
     while (enterCondi === true && wellOpen === true) {
@@ -69,7 +70,6 @@ var concatCustomerPreparer = function (customer, signed, entries, totalCondiArra
 	entries--;	
 	totalBblsCondi = totalCondiArray[entries];
 	concatStrng ="Thank You, " +customer+ " Sincerely " +signed+".";
-	console.log(concatStrng);
 	return concatStrng;
 }
 
@@ -96,6 +96,7 @@ var finishedProcess = function() {
 //Main Code function
 var runMainCode = function(numOfEntries){
 	var toCustomer="";
+	var hourCounter=1;
 	wellOpen = confirm("Is the well open? click \"OK\" for yes");
 	condi = confirm("Do you have condensate numbers to enter? click \"OK\" for yes");
 	while (isItALetter === true) {
@@ -108,19 +109,23 @@ var runMainCode = function(numOfEntries){
 	    	console.log("Please enter a number");
 		}
 	}
-	getCondiNum(condi, wellOpen, CondiArray, numOfEntries);
-
-	CalcCondiBbls(numOfEntries, CondiArray, calculatedArray);
-
+	condiArray=getCondiNum(condi, wellOpen, CondiArray, numOfEntries);
+	calculatedArray=CalcCondiBbls(numOfEntries, CondiArray, calculatedArray);
 	customerName=prompt("What is the customers name?");
 	preparer=prompt("Who prepared this report?");
-
-	concatCustomerPreparer(customerName, preparer, numOfEntries, CondiArray, toCustomer);
-
+	toCustomer=concatCustomerPreparer(customerName, preparer, numOfEntries, CondiArray, toCustomer);
+	numOfEntries--;
+	for(loopCounter=0; loopCounter<=numOfEntries; loopCounter++) {
+		console.log("You made "+calculatedArray[loopCounter]+" of condensate in hour "+hourCounter+".");
+		console.log("Making your total barrels equal"+condiArray[loopCounter]+".");
+		
+		hourCounter++;
+	}
 	console.log(toCustomer);
-
 	finishedProcess();
 }
 
 //Main Code
 runMainCode(totalEntries);
+
+
