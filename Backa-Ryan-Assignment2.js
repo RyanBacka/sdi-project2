@@ -24,7 +24,6 @@ var getCondiNum = function (enterCondi, wellOpen, CondiNumArray, entries) {
     //local variables
     var counter = 0,
         counter2 = 0;
-		entries--;
     
     //nested while loop collecting condensate per hour in array
     while (enterCondi === true && wellOpen === true) {
@@ -33,7 +32,7 @@ var getCondiNum = function (enterCondi, wellOpen, CondiNumArray, entries) {
         CondiNumArray[counter] = parseFloat(CondiNumArray[counter]);
         console.log("You have " + CondiNumArray[counter] + " total barrels of condensate.");
         counter++;
-		if (counter <= entries){
+		if (counter < entries){
 			enterCondi = true;
 		}else{
 			enterCondi = false;
@@ -47,9 +46,9 @@ var CalcCondiBbls = function (entries, CondiNumArray, calcArray) {
 	//local variables
     var loopCounter;
     var mathCounter = 0;
-    entries--;//to account for 0 as a number
+   
     //for loop
-    for (loopCounter = 0; loopCounter <= entries; loopCounter++) {
+    for (loopCounter = 0; loopCounter < entries; loopCounter++) {
         //nested if statement
         if (loopCounter >= 1) {
             calcArray[loopCounter] = CondiNumArray[loopCounter] - CondiNumArray[mathCounter];
